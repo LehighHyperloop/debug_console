@@ -118,17 +118,9 @@ console = HistoryConsole()
 # Loop in main
 console = ConsoleCmd()
 console.prompt = '> '
-console.cmdloop()
-#while True:
-#    try:
-#        line = raw_input('> ')
-#        if line:
-#            client.publish("cmd", line)
-#    except KeyboardInterrupt:
-#        print ""
-#        pass
-#    except EOFError:
-#        # End of file
-#        break
+try:
+    console.cmdloop()
+except KeyboardInterrupt:
+    print "Exit..."
 
 client.loop_stop()
