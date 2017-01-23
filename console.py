@@ -7,8 +7,12 @@ import readline
 import sys
 
 cmd_tree = {
+    # Local commands
     "subscribe": None,
     "unsubscribe": None,
+    "pub": None,
+    "quit": None,
+    # Remote commands
     "ack": None,
     "set": {
         "levitation": [ "STOPPED", "RUNNING" ],
@@ -29,11 +33,18 @@ class ConsoleCmd(cmd.Cmd):
         else:
             client.unsubscribe(line)
 
+    def do_pub(self, line):
+        s = line.split(" ", 1)
+        client.publish(s[0], s[1])
+
     def do_ack(self, line):
         client.publish("cmd", "ack")
 
     def do_set(self, line):
         client.publish("cmd", "set " + line)
+
+    def do_quit(self, line):
+        quit()
 
     def completedefault(self, text, line, start_index, end_index):
         s = line.split(" ")
