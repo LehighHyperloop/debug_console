@@ -7,6 +7,8 @@ import readline
 import sys
 
 cmd_tree = {
+    "subscribe": None,
+    "unsubscribe": None,
     "ack": None,
     "set": {
         "levitation": [ "STOPPED", "RUNNING" ],
@@ -14,8 +16,19 @@ cmd_tree = {
     }
 }
 
+custom_subs = []
 
 class ConsoleCmd(cmd.Cmd):
+    def do_subscribe(self, line):
+        client.subscribe(line)
+        custom_subs.append(line)
+
+    def do_unsubscribe(self, line):
+        if line == "":
+            client.unsubscribe(custom_subs)
+        else:
+            client.unsubscribe(line)
+
     def do_ack(self, line):
         client.publish("cmd", "ack")
 
@@ -86,7 +99,7 @@ def print_console(t):
 def on_message(mosq, obj, msg):
     print_console(msg.topic + ": " + msg.payload)
 
-client.subscribe("#")
+client.subscribe("debug/#")
 client.on_message = on_message
 
 console = HistoryConsole()
