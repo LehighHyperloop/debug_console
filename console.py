@@ -15,8 +15,11 @@ cmd_tree = {
     # Remote commands
     "ack": None,
     "set": {
+        "braking": [ "ON", "OFF" ],
+        "compressor": [ "STOPPED", "RUNNING" ],
+        "fan": [ "STOPPED", "RUNNING" ],
         "levitation": [ "STOPPED", "RUNNING" ],
-        "braking": [ "ON", "OFF" ]
+        "suspension": [ "READY", "RUNNING", "RUNNING_AND_LOGGING" ],
     }
 }
 
