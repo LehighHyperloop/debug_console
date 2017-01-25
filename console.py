@@ -73,13 +73,6 @@ class ConsoleCmd(cmd.Cmd):
                 if k.startswith(text)
             ]
 
-def complete(text, state):
-    line = readline.get_line_buffer()
-    try:
-        return [ x + " " for x in cmds if x.startswith(text)][state]
-    except IndexError:
-        return None
-
 class HistoryConsole(code.InteractiveConsole):
     def __init__(self, locals=None, filename="<console>",
                  histfile=os.path.expanduser("~/.console-history")):
@@ -87,8 +80,6 @@ class HistoryConsole(code.InteractiveConsole):
         self.init_history(histfile)
 
     def init_history(self, histfile):
-        readline.set_completer(complete)
-        readline.parse_and_bind("tab: complete")
         if hasattr(readline, "read_history_file"):
             try:
                 readline.read_history_file(histfile)
