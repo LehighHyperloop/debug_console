@@ -18,8 +18,10 @@ cmd_tree = {
         "braking": [ "ON", "OFF" ],
         "compressor": [ "STOPPED", "RUNNING" ],
         "fan": [ "STOPPED", "RUNNING" ],
+        "lateral_control": [ "EXTENDED", "RETRACTED" ],
         "levitation": [ "STOPPED", "RUNNING" ],
         "suspension": [ "READY", "RUNNING", "RUNNING_AND_LOGGING" ],
+        "wheels": [ "UP", "DOWN" ],
     }
 }
 
