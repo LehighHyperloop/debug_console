@@ -37,6 +37,7 @@ class ConsoleCmd(cmd.Cmd):
             client.unsubscribe(custom_subs)
         else:
             client.unsubscribe(line)
+        client.subscribe("debug/#")
 
     def do_pub(self, line):
         s = line.split(" ", 1)
