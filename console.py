@@ -22,7 +22,9 @@ cmd_tree = {
         "levitation": [ "STOPPED", "RUNNING" ],
         "suspension": [ "READY", "RUNNING", "RUNNING_AND_LOGGING" ],
         "wheels": [ "UP", "DOWN" ],
-    }
+    },
+    "set_global": None,
+    "reload": None
 }
 
 custom_subs = []
@@ -48,6 +50,12 @@ class ConsoleCmd(cmd.Cmd):
 
     def do_set(self, line):
         client.publish("cmd", "set " + line)
+
+    def do_set_global(self, line):
+        client.publish("cmd", "set_global " + line)
+
+    def do_reload(self, line):
+        client.publish("cmd", "reload")
 
     def do_quit(self, line):
         quit()
